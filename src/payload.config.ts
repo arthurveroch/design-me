@@ -13,6 +13,7 @@ import { Expertise } from './collections/Expertise'
 import { Job } from './collections/Job'
 import { FaqHome } from './collections/FaqHome'
 import { FaqJob } from './collections/FaqJob'
+import { cloudinaryStorage } from 'payload-cloudinary'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,5 +37,16 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    cloudinaryStorage({
+      collections: {
+        media: true,
+      },
+      config: {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME || '',
+        api_key: process.env.CLOUDINARY_API_KEY || '',
+        api_secret: process.env.CLOUDINARY_API_SECRET || '',
+      },
+    }),
+  ],
 })
