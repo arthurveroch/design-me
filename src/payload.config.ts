@@ -13,7 +13,6 @@ import { Expertise } from './collections/Expertise'
 import { Job } from './collections/Job'
 import { FaqHome } from './collections/FaqHome'
 import { FaqJob } from './collections/FaqJob'
-import { cloudinaryStorage } from 'payload-cloudinary'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
