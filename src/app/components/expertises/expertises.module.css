@@ -1,0 +1,37 @@
+.expertisesContainer {
+  width: 100%;
+  padding: 150px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.subTitle {
+  font-size: 60px;
+  color: #fff;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.expertisesCardsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .expertisesContainer {
+    padding: 50px 30px;
+  }
+
+  .subTitle {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .subTitle {
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,27 @@
+.bullet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  background: #0e0e10;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 150px;
+
+  p {
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
+
+.point {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 94, 66, 1) 33%,
+    rgba(232, 54, 105, 1) 66%,
+    rgba(170, 50, 200, 1) 100%
+  );
+}

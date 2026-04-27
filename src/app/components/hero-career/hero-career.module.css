@@ -1,0 +1,52 @@
+.heroCareerContainer {
+  background: url('/hero/bg-hero.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 800px;
+  padding: 0 30px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  h1 {
+    font-size: 80px;
+    text-align: center;
+    color: #fff;
+
+    span {
+      background: linear-gradient(
+        90deg,
+        rgba(250, 94, 66, 1) 33%,
+        rgba(232, 54, 105, 1) 66%,
+        rgba(170, 50, 200, 1) 100%
+      );
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .overlay {
+    height: 100svh;
+  }
+
+  .title {
+    h1 {
+      font-size: 60px;
+    }
+
+    h2 {
+      font-size: 60px;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.swiperContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.navigationButtons {
+  display: flex;
+  gap: 5px;
+
+  button {
+    all: unset;
+    border-radius: 150px;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
+.sliderContainer {
+  width: 100%;
+  position: relative;
+}
+
+.slide {
+  width: 49% !important;
+  height: 572px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  border-radius: 30px;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  color: #fff;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  h2 {
+    font-size: 40px;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  p {
+    max-width: 382px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .slide {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .description {
+    padding: 30px 20px;
+  }
+}

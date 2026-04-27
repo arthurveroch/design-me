@@ -1,0 +1,45 @@
+.wrapper {
+  position: relative;
+  border-radius: 20px;
+  background: #100d10;
+  width: 100%;
+}
+
+.wrapper::before {
+  position: absolute;
+  content: '';
+  background: linear-gradient(
+    90deg,
+    rgba(250, 94, 66, 1) 33%,
+    rgba(232, 54, 105, 1) 66%,
+    rgba(170, 50, 200, 1) 100%
+  );
+  inset: -1px;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.textArea {
+  all: unset;
+  width: 100%;
+  padding: 30px 50px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 20px;
+  color: #fff;
+  min-height: 233px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.textArea::placeholder {
+  font-size: 20px;
+  color: #d2d2d2;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .textArea {
+    padding: 20px;
+  }
+}

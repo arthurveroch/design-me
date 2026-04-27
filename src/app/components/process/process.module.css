@@ -1,0 +1,21 @@
+.processContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  padding: 150px 30px;
+}
+
+.cardsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1024px) {
+  .processContainer {
+    padding: 50px 30px;
+  }
+}

@@ -1,0 +1,40 @@
+.offersContainer {
+  width: 100%;
+  padding: 150px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  h2 {
+    font-size: 60px;
+    color: #fff;
+    font-weight: 400;
+    font-style: italic;
+    max-width: 815px;
+  }
+}
+
+.offersCardsContainer {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .offersContainer {
+    h2 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .offersContainer {
+    padding: 50px 30px;
+    h2 {
+      font-size: 30px;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.input {
+  all: unset;
+  color: #fff;
+  padding: 30px 50px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.wrapper {
+  position: relative;
+  border-radius: 20px;
+  background: #100d10;
+  width: 100%;
+}
+
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 94, 66, 1) 33%,
+    rgba(232, 54, 105, 1) 66%,
+    rgba(170, 50, 200, 1) 100%
+  );
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.input::placeholder {
+  color: #d2d2d2;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .input {
+    padding: 20px;
+  }
+}

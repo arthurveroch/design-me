@@ -1,0 +1,42 @@
+.realisationsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 150px 30px;
+}
+
+.subTitle {
+  font-size: 60px;
+  font-style: italic;
+  font-weight: 400;
+  color: #fff;
+}
+
+.gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 94, 66, 1) 0%,
+    rgba(232, 54, 105, 1) 50%,
+    rgba(170, 50, 200, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media screen and (max-width: 1024px) {
+  .realisationsContainer {
+    padding: 50px 30px;
+  }
+
+  .subTitle {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .subTitle {
+    font-size: 30px;
+  }
+}

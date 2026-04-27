@@ -1,0 +1,29 @@
+.buttonGradient {
+  all: unset;
+  padding: 10px 20px;
+  position: relative;
+  background: #000;
+  border-radius: 150px;
+  width: fit-content;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.buttonGradient::before {
+  content: '';
+  position: absolute;
+  inset: -1px; /* épaisseur de la bordure */
+  background: linear-gradient(
+    90deg,
+    rgba(250, 94, 66, 1) 33%,
+    rgba(232, 54, 105, 1) 66%,
+    rgba(170, 50, 200, 1) 100%
+  );
+  border-radius: 150px;
+  z-index: -1;
+}

@@ -1,0 +1,75 @@
+.jobCardContainer {
+  width: 49%;
+  height: 489px;
+  position: relative;
+  border-radius: 30px;
+}
+
+.description {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  bottom: 0;
+  padding: 30px;
+  color: #fff;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  h2 {
+    font-size: 40px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  p {
+    font-style: italic;
+    max-width: 394px;
+  }
+}
+
+.remote {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  background: #fff;
+  gap: 10px;
+  border-radius: 150px;
+}
+
+.bullet {
+  width: 15px;
+  height: 15px;
+  background: #3affb3;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1560px) {
+  .jobCardContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .remote {
+    left: 20px;
+    right: auto;
+  }
+
+  .description {
+    padding: 30px 20px;
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+}

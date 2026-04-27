@@ -1,0 +1,62 @@
+.processCard {
+  width: 49%;
+  height: 559px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 30px;
+}
+
+.descriptionContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.titleProcess {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
+.description {
+  max-width: 474px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1024px) {
+  .processCard {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .descriptionContainer {
+    padding: 30px 20px;
+  }
+
+  .titleProcess {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
