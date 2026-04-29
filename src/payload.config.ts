@@ -13,6 +13,7 @@ import { Expertise } from './collections/Expertise'
 import { Job } from './collections/Job'
 import { FaqHome } from './collections/FaqHome'
 import { FaqJob } from './collections/FaqJob'
+import { Legal } from './collections/Legal'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Process, Project, Expertise, Job, FaqHome, FaqJob],
+  collections: [Users, Media, Process, Project, Expertise, Job, FaqHome, FaqJob, Legal],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

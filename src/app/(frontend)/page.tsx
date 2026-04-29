@@ -6,7 +6,7 @@ import Offers from '../components/offers/Offers'
 import Process from '../components/process/Process'
 import Realisations from '../components/realisations/Realisations'
 
-export const revalidate = 3600
+export const revalidate = 3600 * 24 * 7
 
 export default async function HomePage() {
   return (

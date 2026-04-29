@@ -75,6 +75,7 @@ export interface Config {
     job: Job;
     'faq-home': FaqHome;
     'faq-job': FaqJob;
+    legal: Legal;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     job: JobSelect<false> | JobSelect<true>;
     'faq-home': FaqHomeSelect<false> | FaqHomeSelect<true>;
     'faq-job': FaqJobSelect<false> | FaqJobSelect<true>;
+    legal: LegalSelect<false> | LegalSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -248,6 +250,30 @@ export interface FaqJob {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal".
+ */
+export interface Legal {
+  id: number;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -301,6 +327,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faq-job';
         value: number | FaqJob;
+      } | null)
+    | ({
+        relationTo: 'legal';
+        value: number | Legal;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -448,6 +478,15 @@ export interface FaqHomeSelect<T extends boolean = true> {
 export interface FaqJobSelect<T extends boolean = true> {
   question?: T;
   response?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal_select".
+ */
+export interface LegalSelect<T extends boolean = true> {
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }
