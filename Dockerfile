@@ -43,7 +43,7 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nodejs /app/src/migrations ./migrations
+COPY --from=builder --chown=nextjs:nodejs /app/.next/server/migrations ./migrations
 
 RUN mkdir -p media && chown -R nextjs:nodejs media
 
