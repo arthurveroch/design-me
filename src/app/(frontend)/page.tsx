@@ -7,6 +7,7 @@ import Process from '../components/process/Process'
 import Realisations from '../components/realisations/Realisations'
 
 export const revalidate = 604800
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   return (

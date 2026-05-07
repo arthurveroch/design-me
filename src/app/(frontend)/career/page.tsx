@@ -3,6 +3,7 @@ import HeroCareer from '@/app/components/hero-career/HeroCareer'
 import Jobs from '@/app/components/jobs/Jobs'
 
 export const revalidate = 604800
+export const dynamic = 'force-dynamic'
 
 export default function CareerPage() {
   return (
