@@ -31,15 +31,10 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  onInit: async (payload) => {
-    await payload.db.migrate()
-  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
-    push: true,
-    migrationDir: './migrations',
   }),
   sharp,
   plugins: [],
