@@ -51,4 +51,4 @@ USER nextjs
 EXPOSE 3000
 ENV PORT 3000
 
-CMD ["sh", "-c", "npm run migrate && HOSTNAME='0.0.0.0' node server.js"]
+CMD HOSTNAME="0.0.0.0" node server.js
