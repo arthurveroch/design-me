@@ -1,7 +1,5 @@
 import styles from './hero-career.module.css'
 
-export const revalidate = 3600
-
 export default function HeroCareer() {
   return (
     <section className={styles.heroCareerContainer}>
