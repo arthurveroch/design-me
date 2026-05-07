@@ -44,7 +44,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
-RUN mkdir -p media && chown -R nextjs:nodejs media
+RUN mkdir -p medias && chown -R nextjs:nodejs medias
 
 USER nextjs
 
