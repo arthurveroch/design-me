@@ -3,7 +3,6 @@ FROM node:22.17.0-alpine AS base
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -16,7 +15,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
@@ -26,26 +24,19 @@ RUN \
 
 FROM base AS runner
 WORKDIR /app
-
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
-
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
-
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-COPY --chown=nextjs:nodejs start.sh ./start.sh
-RUN chmod +x ./start.sh
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
 USER nextjs
-
 EXPOSE 3000
 ENV PORT 3000
-
-CMD ["sh", "./start.sh"]
+CMD HOSTNAME="0.0.0.0" node server.js
