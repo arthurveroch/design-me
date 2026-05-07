@@ -27,20 +27,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TABLE "media" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"alt" varchar NOT NULL,
-  	"cloudinary_public_id" varchar,
-  	"cloudinary_resource_type" varchar,
-  	"cloudinary_format" varchar,
-  	"cloudinary_secure_url" varchar,
-  	"cloudinary_bytes" numeric,
-  	"cloudinary_created_at" varchar,
-  	"cloudinary_version" varchar,
-  	"cloudinary_version_id" varchar,
-  	"cloudinary_width" numeric,
-  	"cloudinary_height" numeric,
-  	"cloudinary_duration" numeric,
-  	"cloudinary_pages" numeric,
-  	"cloudinary_selected_page" numeric DEFAULT 1,
-  	"cloudinary_thumbnail_url" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,
@@ -109,6 +95,13 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
   
+  CREATE TABLE "legal" (
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb NOT NULL,
+  	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+  	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+  );
+  
   CREATE TABLE "payload_kv" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"key" varchar NOT NULL,
@@ -134,7 +127,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"expertise_id" integer,
   	"job_id" integer,
   	"faq_home_id" integer,
-  	"faq_job_id" integer
+  	"faq_job_id" integer,
+  	"legal_id" integer
   );
   
   CREATE TABLE "payload_preferences" (
@@ -176,6 +170,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_job_fk" FOREIGN KEY ("job_id") REFERENCES "public"."job"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_faq_home_fk" FOREIGN KEY ("faq_home_id") REFERENCES "public"."faq_home"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_faq_job_fk" FOREIGN KEY ("faq_job_id") REFERENCES "public"."faq_job"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_legal_fk" FOREIGN KEY ("legal_id") REFERENCES "public"."legal"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_users_fk" FOREIGN KEY ("users_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
   CREATE INDEX "users_sessions_order_idx" ON "users_sessions" USING btree ("_order");
@@ -203,6 +198,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "faq_home_created_at_idx" ON "faq_home" USING btree ("created_at");
   CREATE INDEX "faq_job_updated_at_idx" ON "faq_job" USING btree ("updated_at");
   CREATE INDEX "faq_job_created_at_idx" ON "faq_job" USING btree ("created_at");
+  CREATE INDEX "legal_updated_at_idx" ON "legal" USING btree ("updated_at");
+  CREATE INDEX "legal_created_at_idx" ON "legal" USING btree ("created_at");
   CREATE UNIQUE INDEX "payload_kv_key_idx" ON "payload_kv" USING btree ("key");
   CREATE INDEX "payload_locked_documents_global_slug_idx" ON "payload_locked_documents" USING btree ("global_slug");
   CREATE INDEX "payload_locked_documents_updated_at_idx" ON "payload_locked_documents" USING btree ("updated_at");
@@ -218,6 +215,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "payload_locked_documents_rels_job_id_idx" ON "payload_locked_documents_rels" USING btree ("job_id");
   CREATE INDEX "payload_locked_documents_rels_faq_home_id_idx" ON "payload_locked_documents_rels" USING btree ("faq_home_id");
   CREATE INDEX "payload_locked_documents_rels_faq_job_id_idx" ON "payload_locked_documents_rels" USING btree ("faq_job_id");
+  CREATE INDEX "payload_locked_documents_rels_legal_id_idx" ON "payload_locked_documents_rels" USING btree ("legal_id");
   CREATE INDEX "payload_preferences_key_idx" ON "payload_preferences" USING btree ("key");
   CREATE INDEX "payload_preferences_updated_at_idx" ON "payload_preferences" USING btree ("updated_at");
   CREATE INDEX "payload_preferences_created_at_idx" ON "payload_preferences" USING btree ("created_at");
@@ -240,6 +238,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "job" CASCADE;
   DROP TABLE "faq_home" CASCADE;
   DROP TABLE "faq_job" CASCADE;
+  DROP TABLE "legal" CASCADE;
   DROP TABLE "payload_kv" CASCADE;
   DROP TABLE "payload_locked_documents" CASCADE;
   DROP TABLE "payload_locked_documents_rels" CASCADE;

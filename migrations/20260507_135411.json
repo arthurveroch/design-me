@@ -228,91 +228,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "cloudinary_public_id": {
-          "name": "cloudinary_public_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_resource_type": {
-          "name": "cloudinary_resource_type",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_format": {
-          "name": "cloudinary_format",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_secure_url": {
-          "name": "cloudinary_secure_url",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_bytes": {
-          "name": "cloudinary_bytes",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_created_at": {
-          "name": "cloudinary_created_at",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_version": {
-          "name": "cloudinary_version",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_version_id": {
-          "name": "cloudinary_version_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_width": {
-          "name": "cloudinary_width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_height": {
-          "name": "cloudinary_height",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_duration": {
-          "name": "cloudinary_duration",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_pages": {
-          "name": "cloudinary_pages",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "cloudinary_selected_page": {
-          "name": "cloudinary_selected_page",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 1
-        },
-        "cloudinary_thumbnail_url": {
-          "name": "cloudinary_thumbnail_url",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -1079,6 +994,76 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.legal": {
+      "name": "legal",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "legal_updated_at_idx": {
+          "name": "legal_updated_at_idx",
+          "columns": [
+            {
+              "expression": "updated_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "legal_created_at_idx": {
+          "name": "legal_created_at_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.payload_kv": {
       "name": "payload_kv",
       "schema": "",
@@ -1286,6 +1271,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "legal_id": {
+          "name": "legal_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -1453,6 +1444,21 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "payload_locked_documents_rels_legal_id_idx": {
+          "name": "payload_locked_documents_rels_legal_id_idx",
+          "columns": [
+            {
+              "expression": "legal_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
@@ -1566,6 +1572,19 @@
           "tableTo": "faq_job",
           "columnsFrom": [
             "faq_job_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_legal_fk": {
+          "name": "payload_locked_documents_rels_legal_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "legal",
+          "columnsFrom": [
+            "legal_id"
           ],
           "columnsTo": [
             "id"
@@ -1899,6 +1918,6 @@
     "tables": {},
     "columns": {}
   },
-  "id": "0c01a410-e9c6-40d3-9fd2-652fadab9a07",
+  "id": "47fd5932-f6da-4e3e-baba-e544167387b1",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }
