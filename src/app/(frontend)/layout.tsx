@@ -28,9 +28,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <main>{children}</main>
           <Footer />
           <Script
-            defer
             src="http://analytics.agence-designme.com/script.js"
             data-website-id="989307dc-437f-43f4-b256-41d09a39f45e"
+            strategy="afterInteractive"
           />
         </body>
       </MobileMenuContextProvider>
