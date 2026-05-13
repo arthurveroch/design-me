@@ -23,15 +23,15 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <MobileMenuContextProvider>
         <body className={inter.className}>
+          <Navbar />
+          <MobileMenu />
+          <main>{children}</main>
+          <Footer />
           <Script
             defer
             src="http://analytics.agence-designme.com/script.js"
             data-website-id="989307dc-437f-43f4-b256-41d09a39f45e"
           />
-          <Navbar />
-          <MobileMenu />
-          <main>{children}</main>
-          <Footer />
         </body>
       </MobileMenuContextProvider>
     </html>
