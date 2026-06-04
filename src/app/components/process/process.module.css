@@ -1,7 +1,10 @@
 .processContainer {
   display: flex;
   flex-direction: column;
+    margin-left: 50vw;
+  transform : translateX(-50%);
   width: 100%;
+  max-width: 1920px;
   gap: 20px;
   padding: 150px 30px;
 }

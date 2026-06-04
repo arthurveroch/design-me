@@ -1,7 +1,10 @@
 .contactContainer {
   width: 100%;
+  max-width: 1920px;
   display: flex;
   flex-direction: column;
+  margin-left: 50vw;
+  transform : translateX(-50%);
   gap: 40px;
   padding: 150px 30px;
 }
@@ -135,6 +138,12 @@
     gap: 40px;
   }
 
+  .contactInfos{
+
+      position: inherit;
+
+  }
+
   .form {
     width: 100%;
   }
@@ -146,7 +155,7 @@
   }
 
   .contactInfos {
-    position: inherit;
+  
     h2 {
       font-size: 40px;
     }
