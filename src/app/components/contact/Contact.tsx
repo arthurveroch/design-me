@@ -76,7 +76,7 @@ export default function Contact() {
               content="LinkedIn"
               link="https://linkedin.com/company/agence-design-me/"
             />
-            <ButtonGradient target="" content="07 87 82 79 76" link="tel:+33787827976" />
+            <ButtonGradient target="" content="07 67 75 02 53" link="tel:+33767750253" />
           </div>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
